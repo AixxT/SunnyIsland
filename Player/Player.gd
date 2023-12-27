@@ -8,6 +8,9 @@ const JUMP_VELOCITY = -350.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var anim = get_node("AnimationPlayer")
 
+func bounce():
+	velocity.y = JUMP_VELOCITY * 0.7
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():

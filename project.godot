@@ -15,6 +15,14 @@ run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Platform"
+2d_physics/layer_3="Fallzone"
+2d_physics/layer_4="Item"
+2d_physics/layer_5="Enemy"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

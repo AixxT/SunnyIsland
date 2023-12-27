@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://clwmogsmo21wg"]
+[gd_scene load_steps=24 format=3 uid="uid://clwmogsmo21wg"]
 
 [ext_resource type="Script" path="res://Frog.gd" id="1_6to0g"]
 [ext_resource type="Texture2D" uid="uid://b7waeknr0wotp" path="res://Sunny-land-files/Graphical Assets/sprites/frog/idle/frog-idle-1.png" id="1_8fi5r"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://ron0cdgx6l1r" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-6.png" id="7_4jg5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mraxy"]
-size = Vector2(22, 15)
+size = Vector2(22, 11)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1r0do"]
 animations = [{
@@ -112,6 +112,31 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_rmebn"]
 resource_name = "death"
+length = 0.54
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
 
 [sub_resource type="Animation" id="Animation_n7bvq"]
 resource_name = "fall"
@@ -222,11 +247,15 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_y4x4u"]
 radius = 76.0592
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tsem"]
+size = Vector2(16, 4)
+
 [node name="Frog" type="CharacterBody2D"]
+collision_layer = 16
 script = ExtResource("1_6to0g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 5.5)
+position = Vector2(2, 7.5)
 shape = SubResource("RectangleShape2D_mraxy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -240,9 +269,17 @@ libraries = {
 }
 
 [node name="Player-Detection" type="Area2D" parent="."]
+collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player-Detection"]
 shape = SubResource("CircleShape2D_y4x4u")
+
+[node name="top_checker" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top_checker"]
+position = Vector2(2, -1)
+shape = SubResource("RectangleShape2D_5tsem")
 
 [node name="Chase" type="Timer" parent="."]
 process_callback = 0
@@ -250,4 +287,5 @@ wait_time = 1.5
 
 [connection signal="body_entered" from="Player-Detection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="Player-Detection" to="." method="_on_player_detection_body_exited"]
+[connection signal="body_entered" from="top_checker" to="." method="_on_top_checker_body_entered"]
 [connection signal="timeout" from="Chase" to="." method="_on_timer_timeout"]

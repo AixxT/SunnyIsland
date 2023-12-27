@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 80
 const JUMP_VELOCITY = -250
+const BOUNCE_VELOCITY = -100
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 #Declaro la variable player que me va a servir para programar el chase 
@@ -46,7 +47,8 @@ func _physics_process(delta):
 			else :
 				get_node("AnimatedSprite2D").flip_h = false
 	else:
-		get_node("Frog-anim").play("idle")
+		if get_node("Frog-anim").current_animation != "death":
+			get_node("Frog-anim").play("idle")
 		velocity.x = 0
 	move_and_slide()
 
@@ -59,16 +61,12 @@ func jump():
 	velocity.y = JUMP_VELOCITY
 	velocity.x = direction.x * SPEED #Necesaria para que se mueva en el primer salto
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+func _on_top_checker_body_entered(body):
+	if body.name == "Player":
+		chase = false
+		timerChase.stop()
+		body.bounce()
+		get_node("Frog-anim").play("death")
+		$top_checker.set_collision_mask_value(1,false) #Elimina la collision mask y evita que el pj rebote de mas 
+		await get_node("Frog-anim").animation_finished
+		self.queue_free()
