@@ -1,0 +1,122 @@
+[gd_scene load_steps=12 format=3 uid="uid://df05fxrfxm1jr"]
+
+[ext_resource type="Texture2D" uid="uid://b7b63xiqpkplh" path="res://Sunny-land-files/Graphical Assets/environment/Background/back.png" id="1_dil8n"]
+[ext_resource type="Script" path="res://BG.gd" id="1_q0fl6"]
+[ext_resource type="Texture2D" uid="uid://db525ogtuylgy" path="res://Sunny-land-files/Graphical Assets/environment/Background/middle.png" id="3_ock30"]
+[ext_resource type="Texture2D" uid="uid://bcuiccslpay6j" path="res://Sunny-land-files/Graphical Assets/environment/Props/sign.png" id="4_fogtb"]
+[ext_resource type="Texture2D" uid="uid://bm4x3g880a4i2" path="res://Sunny-land-files/Graphical Assets/environment/Props/tree.png" id="5_oqg3s"]
+[ext_resource type="Texture2D" uid="uid://dc8n2kuj7rw6s" path="res://Sunny-land-files/Graphical Assets/environment/Props/skulls.png" id="5_xovc8"]
+[ext_resource type="Texture2D" uid="uid://ck7erjvvduc07" path="res://Sunny-land-files/Graphical Assets/environment/Props/tree-house.png" id="6_gjx57"]
+[ext_resource type="Texture2D" uid="uid://wfxbllbuc82i" path="res://Sunny-land-files/Graphical Assets/environment/Props/bush.png" id="6_oxdbl"]
+[ext_resource type="Texture2D" uid="uid://bptkty3v3btya" path="res://Sunny-land-files/Graphical Assets/environment/Props/pine.png" id="7_ej3as"]
+[ext_resource type="Texture2D" uid="uid://dincaafjm17m0" path="res://Sunny-land-files/Graphical Assets/environment/Props/shrooms.png" id="7_ti22o"]
+[ext_resource type="Texture2D" uid="uid://b8p3ie80nfoc2" path="res://Sunny-land-files/Graphical Assets/environment/Props/rock-2.png" id="8_pvtyj"]
+
+[node name="BG" type="ParallaxBackground"]
+script = ExtResource("1_q0fl6")
+
+[node name="sky" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Back" type="Sprite2D" parent="sky"]
+position = Vector2(576, 324)
+scale = Vector2(3, 2.7)
+texture = ExtResource("1_dil8n")
+
+[node name="mountains" type="ParallaxLayer" parent="."]
+position = Vector2(-16, 24)
+motion_scale = Vector2(0.7, 1)
+motion_mirroring = Vector2(1232, 0)
+
+[node name="Middle" type="Sprite2D" parent="mountains"]
+position = Vector2(88, 440)
+texture = ExtResource("3_ock30")
+
+[node name="Middle2" type="Sprite2D" parent="mountains"]
+position = Vector2(264, 440)
+texture = ExtResource("3_ock30")
+
+[node name="Middle3" type="Sprite2D" parent="mountains"]
+position = Vector2(440, 440)
+texture = ExtResource("3_ock30")
+
+[node name="Middle4" type="Sprite2D" parent="mountains"]
+position = Vector2(616, 440)
+texture = ExtResource("3_ock30")
+
+[node name="Middle5" type="Sprite2D" parent="mountains"]
+position = Vector2(792, 440)
+texture = ExtResource("3_ock30")
+
+[node name="Middle6" type="Sprite2D" parent="mountains"]
+position = Vector2(968, 440)
+texture = ExtResource("3_ock30")
+
+[node name="Middle7" type="Sprite2D" parent="mountains"]
+position = Vector2(1144, 440)
+texture = ExtResource("3_ock30")
+
+[node name="Assets" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.4, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Pine" type="Sprite2D" parent="Assets"]
+modulate = Color(0.741176, 0.741176, 0.741176, 1)
+position = Vector2(480, 456)
+scale = Vector2(3.07317, 3.07317)
+texture = ExtResource("7_ej3as")
+
+[node name="Pine2" type="Sprite2D" parent="Assets"]
+modulate = Color(0.741176, 0.741176, 0.741176, 1)
+position = Vector2(620, 397)
+scale = Vector2(3.37195, 3.65197)
+texture = ExtResource("7_ej3as")
+
+[node name="Rock-1" type="Sprite2D" parent="Assets"]
+modulate = Color(0.866667, 0.866667, 0.866667, 1)
+position = Vector2(575.395, 621.25)
+scale = Vector2(3.58772, 3.58772)
+texture = ExtResource("8_pvtyj")
+
+[node name="Rock-2" type="Sprite2D" parent="Assets"]
+modulate = Color(0.866667, 0.866667, 0.866667, 1)
+position = Vector2(689.395, 629.25)
+scale = Vector2(3.58772, 3.58772)
+skew = -0.120428
+texture = ExtResource("8_pvtyj")
+
+[node name="Bush2" type="Sprite2D" parent="Assets"]
+position = Vector2(1027.83, 614)
+scale = Vector2(2.9639, 2.64286)
+texture = ExtResource("6_oxdbl")
+
+[node name="Tree" type="Sprite2D" parent="Assets"]
+position = Vector2(934, 459)
+scale = Vector2(3.43919, 3.43919)
+texture = ExtResource("5_oqg3s")
+
+[node name="Sign" type="Sprite2D" parent="Assets"]
+position = Vector2(601, 513)
+scale = Vector2(4.44444, 4.44444)
+texture = ExtResource("4_fogtb")
+
+[node name="Skulls" type="Sprite2D" parent="Assets"]
+position = Vector2(615, 546)
+scale = Vector2(4.2, 4.2)
+texture = ExtResource("5_xovc8")
+flip_h = true
+
+[node name="Bush" type="Sprite2D" parent="Assets"]
+position = Vector2(69, 601)
+scale = Vector2(3.57997, 3.46428)
+texture = ExtResource("6_oxdbl")
+
+[node name="Tree-house" type="Sprite2D" parent="Assets"]
+position = Vector2(270, 368)
+scale = Vector2(3.95168, 3.95168)
+texture = ExtResource("6_gjx57")
+
+[node name="Shrooms" type="Sprite2D" parent="Assets"]
+position = Vector2(850, 616)
+scale = Vector2(4.36667, 4.36667)
+texture = ExtResource("7_ti22o")

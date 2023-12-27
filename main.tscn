@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://uj75d5v32006"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_rxuew"]
+[ext_resource type="PackedScene" uid="uid://df05fxrfxm1jr" path="res://BG.tscn" id="2_sb4fd"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_rxuew")
+
+[node name="Play" type="Button" parent="."]
+offset_left = 468.0
+offset_top = 179.0
+offset_right = 683.0
+offset_bottom = 290.0
+text = "Jugar"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 468.58
+offset_top = 344.0
+offset_right = 683.685
+offset_bottom = 453.875
+scale = Vector2(0.995, 0.995)
+text = "Salir"
+
+[node name="BG" parent="." instance=ExtResource("2_sb4fd")]
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
