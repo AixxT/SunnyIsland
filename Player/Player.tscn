@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bofid8gm1drjx"]
+[gd_scene load_steps=27 format=3 uid="uid://bofid8gm1drjx"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_8250m"]
 [ext_resource type="Texture2D" uid="uid://bd0p6rer6svhu" path="res://Sunny-land-files/Graphical Assets/spritesheets/player.png" id="2_tverl"]
@@ -149,6 +149,34 @@ tracks/1/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_5xj2h"]
+resource_name = "hurt"
+length = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
 [sub_resource type="Animation" id="Animation_6h50r"]
 resource_name = "idle"
 length = 0.4
@@ -239,16 +267,18 @@ _data = {
 "RESET": SubResource("Animation_a0luu"),
 "death": SubResource("Animation_6pcym"),
 "fall": SubResource("Animation_n06tu"),
+"hurt": SubResource("Animation_5xj2h"),
 "idle": SubResource("Animation_6h50r"),
 "jump": SubResource("Animation_h6d4q"),
 "run": SubResource("Animation_6bjnw")
 }
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 26
 script = ExtResource("1_8250m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 7)
+position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_v65mg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -268,3 +298,9 @@ libraries = {
 "": SubResource("AnimationLibrary_0ig07")
 }
 autoplay = "idle"
+
+[node name="hurt_timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.5
+
+[connection signal="timeout" from="hurt_timer" to="." method="_on_hurt_timer_timeout"]
