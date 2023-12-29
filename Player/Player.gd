@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 200.0
-const JUMP_VELOCITY = -350.0
+const JUMP_VELOCITY = -300.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -55,6 +55,7 @@ func ouch(enemy_direction: float):
 	$hurt_timer.start()
 	anim.play("hurt")
 	set_modulate(Color(1,0.3,0.3,0.7))
+	set_collision_mask_value(5,false)
 	velocity.y = JUMP_VELOCITY * 0.6
 	
 	if enemy_direction > 0:
@@ -70,6 +71,7 @@ func _on_hurt_timer_timeout():
 	set_modulate(Color(1,1,1,1))
 	hurt = false
 	if is_on_floor():
+		set_collision_mask_value(5,true)
 		$hurt_timer.stop()
 		velocity.x = 0
 

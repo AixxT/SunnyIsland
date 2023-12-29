@@ -274,7 +274,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 26
+collision_mask = 58
 script = ExtResource("1_8250m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -284,7 +284,6 @@ shape = SubResource("CapsuleShape2D_v65mg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3ll0v")
 animation = &"jump"
-frame = 1
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

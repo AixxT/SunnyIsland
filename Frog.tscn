@@ -244,8 +244,8 @@ _data = {
 "jump": SubResource("Animation_nx2f6")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y4x4u"]
-radius = 76.0592
+[sub_resource type="CircleShape2D" id="CircleShape2D_c34nm"]
+radius = 84.006
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xglyk"]
 size = Vector2(26, 13)
@@ -255,7 +255,7 @@ size = Vector2(21, 4)
 
 [node name="Frog" type="CharacterBody2D"]
 collision_layer = 16
-collision_mask = 3
+collision_mask = 35
 script = ExtResource("1_6to0g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -276,7 +276,8 @@ libraries = {
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player-Detection"]
-shape = SubResource("CircleShape2D_y4x4u")
+position = Vector2(2, 5)
+shape = SubResource("CircleShape2D_c34nm")
 
 [node name="side_checker" type="Area2D" parent="."]
 collision_layer = 16
@@ -287,6 +288,7 @@ shape = SubResource("RectangleShape2D_xglyk")
 
 [node name="top_checker" type="Area2D" parent="."]
 collision_layer = 16
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="top_checker"]
 position = Vector2(2.5, -1)
@@ -296,6 +298,9 @@ shape = SubResource("RectangleShape2D_5tsem")
 process_callback = 0
 wait_time = 1.5
 
+[node name="fst_jump" type="Timer" parent="."]
+wait_time = 2.0
+
 [node name="damage_player" type="Timer" parent="."]
 wait_time = 0.05
 
@@ -303,5 +308,6 @@ wait_time = 0.05
 [connection signal="body_exited" from="Player-Detection" to="." method="_on_player_detection_body_exited"]
 [connection signal="body_entered" from="side_checker" to="." method="_on_side_checker_body_entered"]
 [connection signal="body_entered" from="top_checker" to="." method="_on_top_checker_body_entered"]
-[connection signal="timeout" from="Chase" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Chase" to="." method="_on_chase_timeout"]
+[connection signal="timeout" from="fst_jump" to="." method="_on_fst_jump_timeout"]
 [connection signal="timeout" from="damage_player" to="." method="_on_damage_player_timeout"]

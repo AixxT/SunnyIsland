@@ -8,6 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 #Declaro la variable player que me va a servir para programar el chase 
 var player: Node
 var chase: bool = false 
+var fst_jump: int = 0
 var direction: Vector2 #Hacia donde se encuentra el player
 
 @onready var anim: Node = get_node("Frog-anim")
@@ -15,22 +16,28 @@ var direction: Vector2 #Hacia donde se encuentra el player
 func _on_player_detection_body_entered(body):
 	if body.name == "Player":
 		chase = true
+		if is_on_floor() && fst_jump == 0: 
+			jump()
+			fst_jump = 1
+			$fst_jump.start() #Impide que salte seguidamente al entrar y salir del area2D
 
 func _on_player_detection_body_exited(body):
 	if body.name == "Player":
-		chase = false
 		$Chase.stop() #Si no persigue, desactiva el timer del salto
+		chase = false
+		
 
 func _physics_process(delta):
 	#Gravedad
 	velocity.y += gravity * delta
-	
+
 	player = get_node("../../Player/Player")
-	#El normalized transforma el vector original en vector unitario
-	direction = (player.position - self.position).normalized() 
+	if is_on_floor():
+		#El normalized transforma el vector original en vector unitario
+		direction = (player.position - self.position).normalized() 
+
 	if chase == true:
 			if is_on_floor() && $Chase.is_stopped():
-				jump() #Como el timer esta apagado por default arranca saltando
 				$Chase.start() #Inicio el timer que regula el salto
 			elif not is_on_floor() && velocity.y > 0:
 				get_node("Frog-anim").play("fall")
@@ -45,14 +52,16 @@ func _physics_process(delta):
 				get_node("AnimatedSprite2D").flip_h = true
 			else :
 				get_node("AnimatedSprite2D").flip_h = false
-	else:
+	elif is_on_floor():
 		if get_node("Frog-anim").current_animation != "death":
 			get_node("Frog-anim").play("idle")
 		velocity.x = 0
+	elif velocity.y > 0:
+		get_node("Frog-anim").play("fall")
 	move_and_slide()
 
-func _on_timer_timeout(): #cuando el timer se termina salta
-	jump()
+func _on_chase_timeout():
+		jump()
 
 func jump():
 	get_node("Frog-anim").play("jump")
@@ -60,12 +69,19 @@ func jump():
 	velocity.y = JUMP_VELOCITY
 	velocity.x = direction.x * SPEED #Necesaria para que se mueva en el primer salto
 
+func _on_fst_jump_timeout():
+	fst_jump = 0 
+	$fst_jump.stop()
+	
+#Death
 func _on_top_checker_body_entered(body):
 	if body.name == "Player":
 		chase = false
 		$Chase.stop()
 		body.bounce()
-		gravity = 0
+		gravity = 0 #Para que no caiga hasta el piso al morir
+		velocity.y = 0
+		velocity.x = 0
 		
 		get_node("Frog-anim").play("death")
 		set_collision_layer_value(5,false)
@@ -76,6 +92,7 @@ func _on_top_checker_body_entered(body):
 		await get_node("Frog-anim").animation_finished
 		self.queue_free()
 
+#Damage the player
 func _on_side_checker_body_entered(body):
 	if body.name == "Player":
 		body.ouch(direction.x)
@@ -88,7 +105,10 @@ func _on_side_checker_body_entered(body):
 func _on_damage_player_timeout():
 	set_collision_layer_value(5,true)
 	set_collision_mask_value(1,true)
-	if is_on_floor():
-		$top_checker.set_collision_layer_value(5,true)
+	if is_on_floor() && get_node("../../Player/Player").is_on_floor():
+		$top_checker.set_collision_layer_value(5,true) #Arreglar 
 		$top_checker.set_collision_mask_value(1,true)
 		$damage_player.stop()
+
+
+
