@@ -284,6 +284,7 @@ shape = SubResource("CapsuleShape2D_v65mg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3ll0v")
 animation = &"jump"
+frame = 1
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

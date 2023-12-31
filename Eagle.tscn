@@ -1,0 +1,199 @@
+[gd_scene load_steps=20 format=3 uid="uid://b4yvtc4vb2hkw"]
+
+[ext_resource type="Texture2D" uid="uid://bnwe8y5yidx1o" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-1.png" id="1_64ts7"]
+[ext_resource type="Script" path="res://Eagle.gd" id="1_ts1qj"]
+[ext_resource type="Texture2D" uid="uid://myynqhqwaro3" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-2.png" id="2_hnovs"]
+[ext_resource type="Texture2D" uid="uid://cet33x58xhawt" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-3.png" id="3_uh3kv"]
+[ext_resource type="Texture2D" uid="uid://cbi3jh7tqj7so" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-4.png" id="4_rb3qb"]
+[ext_resource type="Texture2D" uid="uid://cmgl2u7elxs7n" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-5.png" id="5_th1qv"]
+[ext_resource type="Texture2D" uid="uid://ron0cdgx6l1r" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-6.png" id="6_3wwmg"]
+[ext_resource type="Texture2D" uid="uid://jejo4x44d14m" path="res://Sunny-land-files/Graphical Assets/sprites/eagle/eagle-attack-1.png" id="7_a87l7"]
+[ext_resource type="Texture2D" uid="uid://c3jl4fuclxv2k" path="res://Sunny-land-files/Graphical Assets/sprites/eagle/eagle-attack-2.png" id="8_x3xgg"]
+[ext_resource type="Texture2D" uid="uid://dghsr10xkugg7" path="res://Sunny-land-files/Graphical Assets/sprites/eagle/eagle-attack-3.png" id="9_5e505"]
+[ext_resource type="Texture2D" uid="uid://c338pkujpone0" path="res://Sunny-land-files/Graphical Assets/sprites/eagle/eagle-attack-4.png" id="10_xw7jg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ikhf0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_64ts7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hnovs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uh3kv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rb3qb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_th1qv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3wwmg")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_a87l7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_x3xgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5e505")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_xw7jg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_htx07"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_up5pg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hmww7"]
+resource_name = "death"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uofqj"]
+_data = {
+"RESET": SubResource("Animation_up5pg"),
+"death": SubResource("Animation_hmww7"),
+"idle": SubResource("Animation_htx07")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2pqvc"]
+size = Vector2(14, 2.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dmtt"]
+size = Vector2(18, 12)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jx1u1"]
+radius = 6.0
+height = 12.0
+
+[node name="Eagle" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_ts1qj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -6)
+sprite_frames = SubResource("SpriteFrames_ikhf0")
+animation = &"idle"
+
+[node name="Eagle-anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uofqj")
+}
+
+[node name="top_checker" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top_checker"]
+position = Vector2(0, -5.75)
+shape = SubResource("RectangleShape2D_2pqvc")
+
+[node name="side_checker" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="side_checker"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_2dmtt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_jx1u1")
+
+[node name="idle" type="Timer" parent="."]
+autostart = true
+
+[node name="damage_player" type="Timer" parent="."]
+wait_time = 0.05
+
+[connection signal="body_entered" from="top_checker" to="." method="_on_top_checker_body_entered"]
+[connection signal="body_entered" from="side_checker" to="." method="_on_side_checker_body_entered"]
+[connection signal="timeout" from="idle" to="." method="_on_idle_timeout"]
+[connection signal="timeout" from="damage_player" to="." method="_on_damage_player_timeout"]
