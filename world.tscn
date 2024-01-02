@@ -1118,7 +1118,7 @@ shape = SubResource("RectangleShape2D_34r7b")
 [node name="Player" type="Node2D" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("1_dd34r")]
-position = Vector2(112, 206)
+position = Vector2(560, 318)
 
 [node name="Mobs" type="Node2D" parent="."]
 
@@ -1126,9 +1126,12 @@ position = Vector2(112, 206)
 position = Vector2(233, 211)
 
 [node name="Eagle" parent="Mobs" instance=ExtResource("8_x6x5m")]
-position = Vector2(509, 303)
+position = Vector2(512, 349)
+initial_motion = -1
+initial_position = Vector2(512, 349)
 
 [node name="Eagle2" parent="Mobs" instance=ExtResource("8_x6x5m")]
-position = Vector2(464, 308)
+position = Vector2(464, 264)
 gravity = 5000
-motion = -1
+initial_motion = 1
+initial_position = Vector2(464, 264)

@@ -31,7 +31,7 @@ func _on_player_detection_body_exited(body):
 func _physics_process(delta):
 	#Gravedad
 	velocity.y += gravity * delta
-	print(self.position)
+
 
 	player = get_node("../../Player/Player")
 	if is_on_floor():
@@ -58,8 +58,9 @@ func _physics_process(delta):
 		if get_node("Frog-anim").current_animation != "death" && $Respawn.is_stopped() :
 			get_node("Frog-anim").play("idle")
 		velocity.x = 0
-	elif velocity.y > 0:
-		get_node("Frog-anim").play("fall")
+	else:
+		if velocity.y > 0 && $Respawn.is_stopped() :
+			get_node("Frog-anim").play("fall")
 	move_and_slide()
 
 func _on_chase_timeout():
@@ -97,7 +98,7 @@ func _on_top_checker_body_entered(body):
 
 func _on_respawn_timeout():
 	gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-	get_node("Frog-anim").stop()
+	velocity.y = 0
 	
 	self.visible = true
 	self.set_position(initial_position)

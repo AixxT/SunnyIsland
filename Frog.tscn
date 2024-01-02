@@ -347,7 +347,7 @@ wait_time = 2.0
 wait_time = 0.05
 
 [node name="Respawn" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 10.0
 
 [connection signal="body_entered" from="Player-Detection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="Player-Detection" to="." method="_on_player_detection_body_exited"]
