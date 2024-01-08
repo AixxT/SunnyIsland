@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://3fdq47bgkxdo"]
+[gd_scene load_steps=39 format=3 uid="uid://3fdq47bgkxdo"]
 
 [ext_resource type="Texture2D" uid="uid://bbol7ptpmogir" path="res://Sunny-land-files/Graphical Assets/environment/tileset.png" id="1_0w6o2"]
 [ext_resource type="PackedScene" uid="uid://bofid8gm1drjx" path="res://Player/Player.tscn" id="1_dd34r"]
@@ -8,6 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://db525ogtuylgy" path="res://Sunny-land-files/Graphical Assets/environment/Background/middle.png" id="4_fs7qy"]
 [ext_resource type="PackedScene" uid="uid://clwmogsmo21wg" path="res://Frog.tscn" id="7_7s4pn"]
 [ext_resource type="PackedScene" uid="uid://b4yvtc4vb2hkw" path="res://Eagle.tscn" id="8_x6x5m"]
+[ext_resource type="PackedScene" uid="uid://ddlb27nes2uqp" path="res://Gem.tscn" id="9_3cq42"]
+[ext_resource type="Script" path="res://HUD.gd" id="10_7ggbr"]
+[ext_resource type="Texture2D" uid="uid://da4o5iuqi31bn" path="res://Sunny-land-files/Graphical Assets/HUD/bar.png" id="10_7mfko"]
+[ext_resource type="Texture2D" uid="uid://cqqc554v85ytg" path="res://Sunny-land-files/Graphical Assets/sprites/gem/gem-1.png" id="10_a0ryj"]
+[ext_resource type="FontFile" uid="uid://vrwy7w0ts8nd" path="res://Sunny-land-files/Fonts/Daydream.ttf" id="11_tt1gw"]
+[ext_resource type="FontFile" uid="uid://d0aardhbvg5l8" path="res://Sunny-land-files/Fonts/Early GameBoy.ttf" id="14_8u7c0"]
+[ext_resource type="PackedScene" uid="uid://d232aelykr372" path="res://Opossum.tscn" id="15_o6l5j"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_nwf73"]
 tile_data = PackedInt32Array(0, 196608, 3, 65536, 196608, 3, 131072, 196608, 3, 196608, 196608, 3, 262144, 196608, 3, 1, 196608, 3, 65537, 196608, 3, 131073, 262144, 10, 196609, 327680, 3, 262145, 196608, 1610612741, 2, 196608, 3, 65538, 196608, 3, 131074, 327680, 10, 262146, 589824, 7, 3, 262144, 10, 65539, 262144, 11, 4, 327680, 10)
@@ -994,6 +1001,15 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34r7b"]
 size = Vector2(57, 663)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qo4e"]
+size = Vector2(15.0625, 61.8125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_as4l0"]
+size = Vector2(17.0938, 68.2813)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1b0dp"]
+texture = ExtResource("10_7mfko")
+
 [node name="World" type="Node2D"]
 
 [node name="BG" type="ParallaxBackground" parent="."]
@@ -1103,22 +1119,52 @@ position = Vector2(536, 376)
 shape = SubResource("RectangleShape2D_qmj3n")
 one_way_collision = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Map_borders" type="StaticBody2D" parent="."]
 collision_layer = 32
 collision_mask = 17
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map_borders"]
 position = Vector2(-28.5, 326.5)
 shape = SubResource("RectangleShape2D_34r7b")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map_borders"]
 position = Vector2(701, 332)
 shape = SubResource("RectangleShape2D_34r7b")
+
+[node name="patrol_borders" type="StaticBody2D" parent="."]
+collision_layer = 64
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="patrol_borders"]
+position = Vector2(328, 395)
+shape = SubResource("RectangleShape2D_7qo4e")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="patrol_borders"]
+position = Vector2(637, 394)
+shape = SubResource("RectangleShape2D_as4l0")
+
+[node name="Assets" type="Node2D" parent="."]
+position = Vector2(111, 203)
+
+[node name="Gem" parent="Assets" instance=ExtResource("9_3cq42")]
+position = Vector2(-87, 181)
+
+[node name="Gem2" parent="Assets" instance=ExtResource("9_3cq42")]
+position = Vector2(401, 37)
+
+[node name="Gem3" parent="Assets" instance=ExtResource("9_3cq42")]
+position = Vector2(425, 37)
+
+[node name="Gem4" parent="Assets" instance=ExtResource("9_3cq42")]
+position = Vector2(-31, -11)
+
+[node name="Gem5" parent="Assets" instance=ExtResource("9_3cq42")]
+position = Vector2(-55, -35)
 
 [node name="Player" type="Node2D" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("1_dd34r")]
-position = Vector2(560, 318)
+position = Vector2(146, 367)
 
 [node name="Mobs" type="Node2D" parent="."]
 
@@ -1135,3 +1181,52 @@ position = Vector2(464, 264)
 gravity = 5000
 initial_motion = 1
 initial_position = Vector2(464, 264)
+
+[node name="Opossum" parent="Mobs" instance=ExtResource("15_o6l5j")]
+position = Vector2(462, 402)
+platform_wall_layers = 6
+motion = -1
+initial_position = Vector2(462, 402)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("10_7ggbr")
+
+[node name="Panel" type="Panel" parent="HUD"]
+offset_left = -58.0
+offset_top = -37.0
+offset_right = 162.0
+offset_bottom = 87.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_1b0dp")
+
+[node name="gem-HUD" type="TextureRect" parent="HUD"]
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 42.0
+offset_bottom = 36.0
+texture = ExtResource("10_a0ryj")
+
+[node name="x" type="Label" parent="HUD"]
+offset_left = 47.0
+offset_top = 11.0
+offset_right = 88.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0.298039, 0.145098, 0.384314, 1)
+theme_override_fonts/font = ExtResource("11_tt1gw")
+theme_override_font_sizes/font_size = 13
+text = "x"
+
+[node name="gems" type="Label" parent="HUD"]
+offset_left = 74.0
+offset_top = 4.0
+offset_right = 149.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0.298039, 0.145098, 0.384314, 1)
+theme_override_fonts/font = ExtResource("14_8u7c0")
+theme_override_font_sizes/font_size = 25
+text = "20"
+
+[connection signal="gem_collected" from="Assets/Gem" to="HUD" method="_on_gem_collected"]
+[connection signal="gem_collected" from="Assets/Gem2" to="HUD" method="_on_gem_collected"]
+[connection signal="gem_collected" from="Assets/Gem3" to="HUD" method="_on_gem_collected"]
+[connection signal="gem_collected" from="Assets/Gem4" to="HUD" method="_on_gem_collected"]
+[connection signal="gem_collected" from="Assets/Gem5" to="HUD" method="_on_gem_collected"]

@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://dirt80bd4rsxu"
+path="res://.godot/imported/Retroville NC.ttf-0493b32ef529a9f9b121af83e55590e7.fontdata"
+
+[deps]
+
+source_file="res://Sunny-land-files/Fonts/Retroville NC.ttf"
+dest_files=["res://.godot/imported/Retroville NC.ttf-0493b32ef529a9f9b121af83e55590e7.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

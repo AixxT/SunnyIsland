@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var gravity: int = 3000
 ## Controla el movimiento inicial del mob. 
 ## Si es 1 se eleva y si es -1 desciende
-@export var initial_motion: int 
+@export_range(-1,1,2) var initial_motion: int 
 ## Coordenadas de la posicion inicial del mob.
 ## Es necesaria para que respawnee en el mismo lugar de inicio
 @export var initial_position: Vector2
@@ -38,6 +38,8 @@ func _physics_process(delta):
 
 func _on_idle_timeout():
 	motion = -(motion)
+	if gravity == 0:
+		gravity = initial_gravity
 
 func _on_top_checker_body_entered(body):
 	if body.name == "Player":

@@ -189,13 +189,13 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2pqvc"]
-size = Vector2(18, 2.25)
+size = Vector2(22, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dmtt"]
-size = Vector2(22, 12)
+size = Vector2(24, 11)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v0m5a"]
-radius = 5.99976
+radius = 3.99984
 height = 20.0171
 
 [node name="Eagle" type="CharacterBody2D"]
@@ -216,13 +216,13 @@ libraries = {
 [node name="top_checker" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="top_checker"]
-position = Vector2(0, -4.875)
+position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_2pqvc")
 
 [node name="side_checker" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="side_checker"]
-position = Vector2(0, 3)
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_2dmtt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
