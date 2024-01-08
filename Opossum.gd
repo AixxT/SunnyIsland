@@ -52,10 +52,11 @@ func _on_top_checker_body_entered(body):
 	velocity.x = 0
 	body.bounce()
 	get_node("AnimationPlayer").play("death")
-	set_collision_mask_value(1,false)
 	set_collision_layer_value(5,false)
+	set_collision_mask_value(1,false)
 	
 	$side_checker.set_collision_mask_value(1,false)
+	$top_checker.set_collision_layer_value(5,false)
 	$top_checker.set_collision_mask_value(1,false) #Elimina la collision mask y evita que el pj rebote de mas 
 	await get_node("AnimationPlayer").animation_finished
 	self.visible = false

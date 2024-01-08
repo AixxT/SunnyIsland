@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://3fdq47bgkxdo"]
+[gd_scene load_steps=40 format=3 uid="uid://3fdq47bgkxdo"]
 
 [ext_resource type="Texture2D" uid="uid://bbol7ptpmogir" path="res://Sunny-land-files/Graphical Assets/environment/tileset.png" id="1_0w6o2"]
 [ext_resource type="PackedScene" uid="uid://bofid8gm1drjx" path="res://Player/Player.tscn" id="1_dd34r"]
@@ -1007,6 +1007,9 @@ size = Vector2(15.0625, 61.8125)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_as4l0"]
 size = Vector2(17.0938, 68.2813)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swg4t"]
+size = Vector2(15.5469, 53.1406)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1b0dp"]
 texture = ExtResource("10_7mfko")
 
@@ -1143,6 +1146,14 @@ shape = SubResource("RectangleShape2D_7qo4e")
 position = Vector2(637, 394)
 shape = SubResource("RectangleShape2D_as4l0")
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="patrol_borders"]
+position = Vector2(152.227, 400.57)
+shape = SubResource("RectangleShape2D_swg4t")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="patrol_borders"]
+position = Vector2(-8, 404)
+shape = SubResource("RectangleShape2D_swg4t")
+
 [node name="Assets" type="Node2D" parent="."]
 position = Vector2(111, 203)
 
@@ -1187,6 +1198,11 @@ position = Vector2(462, 402)
 platform_wall_layers = 6
 motion = -1
 initial_position = Vector2(462, 402)
+
+[node name="Opossum2" parent="Mobs" instance=ExtResource("15_o6l5j")]
+position = Vector2(66, 402)
+platform_wall_layers = 6
+initial_position = Vector2(66, 402)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("10_7ggbr")
