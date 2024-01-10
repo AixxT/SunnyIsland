@@ -33,6 +33,9 @@ func _physics_process(delta):
 	else:
 		velocity.y = -(gravity) * delta
 	
+	if ($Respawn.is_stopped() && get_node("Eagle-anim").current_animation != "death") && gravity == 0:
+		gravity = initial_gravity
+		
 	move_and_slide()
 
 
@@ -61,7 +64,6 @@ func _on_top_checker_body_entered(body):
 func _on_respawn_timeout():
 	velocity.y = 0
 	motion = initial_motion
-	
 	
 	self.visible = true
 	self.set_position(initial_position)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://3fdq47bgkxdo"]
+[gd_scene load_steps=41 format=3 uid="uid://3fdq47bgkxdo"]
 
 [ext_resource type="Texture2D" uid="uid://bbol7ptpmogir" path="res://Sunny-land-files/Graphical Assets/environment/tileset.png" id="1_0w6o2"]
 [ext_resource type="PackedScene" uid="uid://bofid8gm1drjx" path="res://Player/Player.tscn" id="1_dd34r"]
@@ -15,6 +15,7 @@
 [ext_resource type="FontFile" uid="uid://vrwy7w0ts8nd" path="res://Sunny-land-files/Fonts/Daydream.ttf" id="11_tt1gw"]
 [ext_resource type="FontFile" uid="uid://d0aardhbvg5l8" path="res://Sunny-land-files/Fonts/Early GameBoy.ttf" id="14_8u7c0"]
 [ext_resource type="PackedScene" uid="uid://d232aelykr372" path="res://Opossum.tscn" id="15_o6l5j"]
+[ext_resource type="PackedScene" uid="uid://cb2yg82r21hdj" path="res://Cherry.tscn" id="16_fvqoe"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_nwf73"]
 tile_data = PackedInt32Array(0, 196608, 3, 65536, 196608, 3, 131072, 196608, 3, 196608, 196608, 3, 262144, 196608, 3, 1, 196608, 3, 65537, 196608, 3, 131073, 262144, 10, 196609, 327680, 3, 262145, 196608, 1610612741, 2, 196608, 3, 65538, 196608, 3, 131074, 327680, 10, 262146, 589824, 7, 3, 262144, 10, 65539, 262144, 11, 4, 327680, 10)
@@ -1157,20 +1158,18 @@ shape = SubResource("RectangleShape2D_swg4t")
 [node name="Assets" type="Node2D" parent="."]
 position = Vector2(111, 203)
 
-[node name="Gem" parent="Assets" instance=ExtResource("9_3cq42")]
-position = Vector2(-87, 181)
+[node name="Gems" type="Node" parent="Assets"]
 
-[node name="Gem2" parent="Assets" instance=ExtResource("9_3cq42")]
-position = Vector2(401, 37)
+[node name="Gem" parent="Assets/Gems" instance=ExtResource("9_3cq42")]
+position = Vector2(24, 384)
 
-[node name="Gem3" parent="Assets" instance=ExtResource("9_3cq42")]
-position = Vector2(425, 37)
+[node name="Gem2" parent="Assets/Gems" instance=ExtResource("9_3cq42")]
+position = Vector2(512, 240)
 
-[node name="Gem4" parent="Assets" instance=ExtResource("9_3cq42")]
-position = Vector2(-31, -11)
+[node name="Gem3" parent="Assets/Gems" instance=ExtResource("9_3cq42")]
+position = Vector2(536, 240)
 
-[node name="Gem5" parent="Assets" instance=ExtResource("9_3cq42")]
-position = Vector2(-55, -35)
+[node name="Cherries" type="Node" parent="Assets"]
 
 [node name="Player" type="Node2D" parent="."]
 
@@ -1241,8 +1240,9 @@ theme_override_fonts/font = ExtResource("14_8u7c0")
 theme_override_font_sizes/font_size = 25
 text = "20"
 
-[connection signal="gem_collected" from="Assets/Gem" to="HUD" method="_on_gem_collected"]
-[connection signal="gem_collected" from="Assets/Gem2" to="HUD" method="_on_gem_collected"]
-[connection signal="gem_collected" from="Assets/Gem3" to="HUD" method="_on_gem_collected"]
-[connection signal="gem_collected" from="Assets/Gem4" to="HUD" method="_on_gem_collected"]
-[connection signal="gem_collected" from="Assets/Gem5" to="HUD" method="_on_gem_collected"]
+[node name="Cherry" parent="." instance=ExtResource("16_fvqoe")]
+position = Vector2(197, 346)
+
+[connection signal="gem_collected" from="Assets/Gems/Gem" to="HUD" method="_on_gem_collected"]
+[connection signal="gem_collected" from="Assets/Gems/Gem2" to="HUD" method="_on_gem_collected"]
+[connection signal="gem_collected" from="Assets/Gems/Gem3" to="HUD" method="_on_gem_collected"]
