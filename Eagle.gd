@@ -45,7 +45,7 @@ func _on_idle_timeout():
 		gravity = initial_gravity
 
 func _on_top_checker_body_entered(body):
-	if body.name == "Player":
+	if body.name == "Player" && $damage_player.is_stopped():
 		body.bounce()
 		initial_gravity = gravity 
 		gravity = 0 #Para que no caiga hasta el piso al morir
@@ -71,13 +71,13 @@ func _on_respawn_timeout():
 	
 	await get_node("Eagle-anim").animation_finished
 	gravity = initial_gravity #Espera a que termine el respawn antes de moverse
-	set_collision_layer_value(5,true)
 	set_collision_mask_value(1,true)
 	$side_checker.set_collision_mask_value(1,true)
 	$top_checker.set_collision_mask_value(1,true)
-	$idle.start()
+	set_collision_layer_value(5,true)
 	
 	$Respawn.stop()
+	$idle.start()
 
 #Damage the player
 func _on_side_checker_body_entered(body):

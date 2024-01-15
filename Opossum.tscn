@@ -79,35 +79,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_18odg"]
-resource_name = "patrol"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"patrol"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-
 [sub_resource type="Animation" id="Animation_2ykcd"]
 length = 0.001
 tracks/0/type = "value"
@@ -163,6 +134,35 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_18odg"]
+resource_name = "patrol"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"patrol"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="Animation" id="Animation_k1afe"]
 resource_name = "respawn"
 length = 0.5
@@ -200,10 +200,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvyrp"]
-size = Vector2(26, 4)
+size = Vector2(28, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jby4s"]
-size = Vector2(30, 13)
+size = Vector2(32, 13)
 
 [node name="Opossum" type="CharacterBody2D"]
 collision_layer = 16
@@ -247,9 +247,13 @@ one_shot = true
 autostart = true
 
 [node name="Respawn" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 3.0
+
+[node name="damage_player" type="Timer" parent="."]
+wait_time = 0.05
 
 [connection signal="body_entered" from="top_checker" to="." method="_on_top_checker_body_entered"]
 [connection signal="body_entered" from="side_checker" to="." method="_on_side_checker_body_entered"]
 [connection signal="timeout" from="motion_assignation" to="." method="_on_motion_assignation_timeout"]
 [connection signal="timeout" from="Respawn" to="." method="_on_respawn_timeout"]
+[connection signal="timeout" from="damage_player" to="." method="_on_damage_player_timeout"]

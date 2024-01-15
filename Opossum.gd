@@ -40,28 +40,29 @@ func _on_motion_assignation_timeout():
 #Damage the player
 func _on_side_checker_body_entered(body):
 	if body.name == "Player":
+		$damage_player.start()
 		body.ouch(direction.x)
+		set_collision_layer_value(5,false)
 		set_collision_mask_value(1,false)
-		$top_checker.set_collision_layer_value(5,false)
+		$top_checker.set_collision_mask_value(5,false)
 		$top_checker.set_collision_mask_value(1,false)
 	elif body.name == "Map_borders" or body.name == "patrol_borders":
 		motion = -(motion)
 
 #Trigger death animation
 func _on_top_checker_body_entered(body):
-	velocity.x = 0
-	body.bounce()
-	get_node("AnimationPlayer").play("death")
-	set_collision_layer_value(5,false)
-	set_collision_mask_value(1,false)
-	
-	$side_checker.set_collision_mask_value(1,false)
-	$top_checker.set_collision_layer_value(5,false)
-	$top_checker.set_collision_mask_value(1,false) #Elimina la collision mask y evita que el pj rebote de mas 
-	await get_node("AnimationPlayer").animation_finished
-	self.visible = false
-	$Respawn.start()
-
+	if body.name == "Player" && $damage_player.is_stopped():
+		velocity.x = 0
+		body.bounce()
+		get_node("AnimationPlayer").play("death")
+		set_collision_mask_value(1,false)
+		set_collision_layer_value(5,false)
+		
+		$side_checker.set_collision_mask_value(1,false)
+		$top_checker.set_collision_mask_value(1,false) #Elimina la collision mask y evita que el pj rebote de mas 
+		await get_node("AnimationPlayer").animation_finished
+		self.visible = false
+		$Respawn.start()
 
 func _on_respawn_timeout():
 	motion = initial_motion
@@ -77,3 +78,13 @@ func _on_respawn_timeout():
 	$top_checker.set_collision_mask_value(1,true)
 	
 	$Respawn.stop()
+
+
+func _on_damage_player_timeout():
+	set_collision_layer_value(5,true)
+	set_collision_mask_value(1,true)
+	if get_node("../../Player/Player").is_on_floor():
+		$top_checker.set_collision_layer_value(5,true) 
+		$top_checker.set_collision_mask_value(1,true)
+		$side_checker.set_collision_mask_value(1,true)
+		$damage_player.stop()

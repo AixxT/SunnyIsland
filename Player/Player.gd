@@ -52,6 +52,8 @@ func bounce():
 
 func ouch(enemy_direction: float):
 	hurt = true
+	Global.lose_life()
+	
 	$hurt_timer.start()
 	anim.play("hurt")
 	set_modulate(Color(1,0.3,0.3,0.7))
