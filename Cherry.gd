@@ -7,7 +7,7 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.name == "Player":
-		# body.add_life()
+		Global.gain_life()
 		get_node("Cherry-anim").play("collected")
 		set_collision_layer_value(4,false)
 		set_collision_mask_value(1,false)
