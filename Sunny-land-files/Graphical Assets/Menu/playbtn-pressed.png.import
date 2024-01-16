@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3j07x80wauci"
-path="res://.godot/imported/house.png-5f5f3d3a6ca611a1a6c849dbcb5ca88f.ctex"
+uid="uid://l7j0hfbanjd0"
+path="res://.godot/imported/playbtn-pressed.png-a213fb3822f691aea6630d07d0aa6101.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sunny-land-files/Graphical Assets/environment/Props/house.png"
-dest_files=["res://.godot/imported/house.png-5f5f3d3a6ca611a1a6c849dbcb5ca88f.ctex"]
+source_file="res://Sunny-land-files/Graphical Assets/Menu/playbtn-pressed.png"
+dest_files=["res://.godot/imported/playbtn-pressed.png-a213fb3822f691aea6630d07d0aa6101.ctex"]
 
 [params]
 

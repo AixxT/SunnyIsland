@@ -1,6 +1,7 @@
-[gd_scene load_steps=43 format=3 uid="uid://3fdq47bgkxdo"]
+[gd_scene load_steps=44 format=3 uid="uid://3fdq47bgkxdo"]
 
 [ext_resource type="Texture2D" uid="uid://bbol7ptpmogir" path="res://Sunny-land-files/Graphical Assets/environment/tileset.png" id="1_0w6o2"]
+[ext_resource type="Script" path="res://world.gd" id="1_3yx04"]
 [ext_resource type="PackedScene" uid="uid://bofid8gm1drjx" path="res://Player/Player.tscn" id="1_dd34r"]
 [ext_resource type="Script" path="res://BG.gd" id="1_pog5b"]
 [ext_resource type="Texture2D" uid="uid://bps26sg8x75c4" path="res://Sunny-land-files/Graphical Assets/environment/Background/props.png" id="2_ixop7"]
@@ -1017,6 +1018,7 @@ size = Vector2(15.5469, 53.1406)
 texture = ExtResource("10_7mfko")
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_3yx04")
 
 [node name="BG" type="ParallaxBackground" parent="."]
 script = ExtResource("1_pog5b")
