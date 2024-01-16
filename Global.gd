@@ -8,8 +8,8 @@ func lose_life():
 	lives -= 1 
 	hud.load_hearts()
 	if lives <= 0:
-		print("game over")
-
+		get_tree().change_scene_to_file("res://game_over.tscn")
+		
 func gain_life():
 	if lives > 0 && lives < max_lives:
 		lives += 1

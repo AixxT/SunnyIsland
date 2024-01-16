@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1c488jpq4a3r"]
+
+[ext_resource type="PackedScene" uid="uid://df05fxrfxm1jr" path="res://BG.tscn" id="1_n760s"]
+[ext_resource type="Script" path="res://game_over.gd" id="1_wufvt"]
+[ext_resource type="Texture2D" uid="uid://cbp7y68iqt5ia" path="res://Sunny-land-files/Graphical Assets/Menu/Game Over.png" id="2_q3rsu"]
+[ext_resource type="Texture2D" uid="uid://b0re1mcvms3yr" path="res://Sunny-land-files/Graphical Assets/Menu/againbtn-normal.png" id="3_aeb24"]
+[ext_resource type="Texture2D" uid="uid://8dfef4l85rj0" path="res://Sunny-land-files/Graphical Assets/Menu/againbtn-pressed.png" id="4_y232r"]
+[ext_resource type="Texture2D" uid="uid://csma1itm84d1t" path="res://Sunny-land-files/Graphical Assets/Menu/againbtn-hover.png" id="5_n7eq0"]
+[ext_resource type="Texture2D" uid="uid://cvw3k0kqjo4kd" path="res://Sunny-land-files/Graphical Assets/Menu/menubtn-normal.png" id="6_v1658"]
+[ext_resource type="Texture2D" uid="uid://dr5w4tq3gv6ca" path="res://Sunny-land-files/Graphical Assets/Menu/menubtn-pressed.png" id="7_5aqgj"]
+[ext_resource type="Texture2D" uid="uid://cjrgkfautuboy" path="res://Sunny-land-files/Graphical Assets/Menu/menubtn-hover.png" id="8_j18ro"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_wufvt")
+
+[node name="BG" parent="." instance=ExtResource("1_n760s")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 1159.0
+offset_bottom = 650.0
+color = Color(0.858824, 0.305882, 0.188235, 0.552941)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 208.0
+offset_top = -4.0
+offset_right = 943.0
+offset_bottom = 438.0
+texture = ExtResource("2_q3rsu")
+
+[node name="try_again" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 426.0
+offset_right = 539.0
+offset_bottom = 484.0
+texture_normal = ExtResource("3_aeb24")
+texture_pressed = ExtResource("4_y232r")
+texture_hover = ExtResource("5_n7eq0")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="main_menu" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 632.0
+offset_top = 426.0
+offset_right = 845.0
+offset_bottom = 484.0
+texture_normal = ExtResource("6_v1658")
+texture_pressed = ExtResource("7_5aqgj")
+texture_hover = ExtResource("8_j18ro")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="try_again" to="." method="_on_try_again_pressed"]
+[connection signal="pressed" from="main_menu" to="." method="_on_main_menu_pressed"]
