@@ -10,14 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Godot for beginners"
-run/main_scene="res://main.tscn"
+config/name="SunnyLand - 1st project"
+run/main_scene="res://Menu/main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://Global.gd"
+GLOBAL="*res://Globals/Global.gd"
 
 [layer_names]
 

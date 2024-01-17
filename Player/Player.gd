@@ -10,6 +10,8 @@ var hurt: bool = false
 var hurt_control: int = 0
 @onready var anim = get_node("AnimationPlayer")
 
+signal game_over
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -52,22 +54,25 @@ func bounce():
 
 func ouch(enemy_direction: float):
 	hurt = true
-	Global.lose_life()
+	GLOBAL.lose_life()
 	
-	$hurt_timer.start()
-	anim.play("hurt")
-	set_modulate(Color(1,0.3,0.3,0.7))
-	set_collision_mask_value(5,false)
-	velocity.y = JUMP_VELOCITY * 0.6
-	
-	if enemy_direction > 0:
-		velocity.x = 100
-	elif enemy_direction < 0:
-		velocity.x = -100
-	
-	Input.action_release("ui_left") 
-	Input.action_release("ui_right")
-	Input.action_release("ui_up")
+	if GLOBAL.lives <= 0:
+		self.death()
+	else:
+		$hurt_timer.start()
+		anim.play("hurt")
+		set_modulate(Color(1,0.3,0.3,0.7))
+		set_collision_mask_value(5,false)
+		velocity.y = JUMP_VELOCITY * 0.6
+		
+		if enemy_direction > 0:
+			velocity.x = 100
+		elif enemy_direction < 0:
+			velocity.x = -100
+		
+		Input.action_release("ui_left") 
+		Input.action_release("ui_right")
+		Input.action_release("ui_up")
 
 func _on_hurt_timer_timeout():
 	set_modulate(Color(1,1,1,1))
@@ -77,7 +82,9 @@ func _on_hurt_timer_timeout():
 		$hurt_timer.stop()
 		velocity.x = 0
 
+func death():
+	get_tree().paused = true
 	
-	
-
-
+	anim.play("death")
+	await get_node("AnimationPlayer").animation_finished
+	emit_signal("game_over")
