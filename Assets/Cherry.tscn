@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cb2yg82r21hdj"]
+[gd_scene load_steps=20 format=3 uid="uid://cb2yg82r21hdj"]
 
 [ext_resource type="Texture2D" uid="uid://cu6qshewww23n" path="res://Sunny-land-files/Graphical Assets/sprites/item-feedback/item-feedback-1.png" id="1_38m7j"]
 [ext_resource type="Texture2D" uid="uid://cyvvg51cvu7if" path="res://Sunny-land-files/Graphical Assets/sprites/cherry/cherry-1.png" id="1_357ym"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cnq2fahytot1u" path="res://Sunny-land-files/Graphical Assets/sprites/cherry/cherry-5.png" id="5_gq1w3"]
 [ext_resource type="Texture2D" uid="uid://dpi78hmk7m268" path="res://Sunny-land-files/Graphical Assets/sprites/cherry/cherry-6.png" id="6_tmxdf"]
 [ext_resource type="Texture2D" uid="uid://dxdw2d5vmo3g4" path="res://Sunny-land-files/Graphical Assets/sprites/cherry/cherry-7.png" id="7_tph5y"]
+[ext_resource type="AudioStream" uid="uid://deffs1shset0i" path="res://Audio/Sound/gain-life.ogg" id="13_vm84l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_won28"]
 radius = 8.0
@@ -169,4 +170,10 @@ libraries = {
 "": SubResource("AnimationLibrary_etfyc")
 }
 
+[node name="Sound_gain_life" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_vm84l")
+volume_db = -20.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="Cherry-anim" to="." method="_on_cherryanim_animation_finished"]
+[connection signal="finished" from="Sound_gain_life" to="." method="_on_sound_gain_life_finished"]

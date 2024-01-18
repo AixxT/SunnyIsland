@@ -7,6 +7,7 @@ func _on_shine_timeout():
 
 func _on_body_entered(body):
 	if body.name == "Player":
+		$Sound_gem_collected.play()
 		emit_signal("gem_collected") #emito la signal que recibe el hud para incrementar el contador
 		set_collision_mask_value(1,false)
 		$shine.stop()

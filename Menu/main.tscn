@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://uj75d5v32006"]
+[gd_scene load_steps=15 format=3 uid="uid://uj75d5v32006"]
 
 [ext_resource type="Script" path="res://Menu/main.gd" id="1_rxuew"]
 [ext_resource type="PackedScene" uid="uid://df05fxrfxm1jr" path="res://Menu/BG.tscn" id="2_sb4fd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cgrb27koxjh0q" path="res://Sunny-land-files/Graphical Assets/Menu/quitbtn-normal.png" id="7_p3do1"]
 [ext_resource type="Texture2D" uid="uid://4fxenxftgjn8" path="res://Sunny-land-files/Graphical Assets/Menu/quitbtn-pressed.png" id="8_vvrs8"]
 [ext_resource type="Texture2D" uid="uid://byu1lpps8wj60" path="res://Sunny-land-files/Graphical Assets/Menu/quitbtn-hover.png" id="9_ceww6"]
+[ext_resource type="AudioStream" uid="uid://bbghihxrkqm46" path="res://Audio/Music/platformer_level03_loop.ogg" id="11_044of"]
 
 [sub_resource type="Animation" id="Animation_y3wql"]
 resource_name = "fade_in"
@@ -91,15 +92,15 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 382.0
-offset_top = 30.0
-offset_right = 747.0
-offset_bottom = 115.0
+offset_left = 354.0
+offset_top = 26.0
+offset_right = 802.0
+offset_bottom = 111.0
 theme_override_colors/font_color = Color(0.196078, 0.341176, 0.384314, 1)
 theme_override_fonts/font = ExtResource("4_kwhuk")
 text = "Code by Qwen
-Main song by Kneissl
-Art by Ansimuz, Sound effects by"
+Main theme by Kneissl
+Art by Ansimuz, Sound effects by Kenney"
 horizontal_alignment = 1
 
 [node name="Play" type="TextureButton" parent="."]
@@ -137,6 +138,11 @@ visible = false
 offset_right = 1156.0
 offset_bottom = 654.0
 color = Color(0.196078, 0.172549, 0.262745, 1)
+
+[node name="Music_menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_044of")
+volume_db = -12.0
+autoplay = true
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

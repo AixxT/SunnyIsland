@@ -46,6 +46,7 @@ func _on_idle_timeout():
 
 func _on_top_checker_body_entered(body):
 	if body.name == "Player" && $damage_player.is_stopped():
+		$"Sound-killed".play()
 		body.bounce()
 		initial_gravity = gravity 
 		gravity = 0 #Para que no caiga hasta el piso al morir

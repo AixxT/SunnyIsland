@@ -7,10 +7,14 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.name == "Player":
-		GLOBAL.gain_life()
+		$Sound_gain_life.play()
 		get_node("Cherry-anim").play("collected")
+		GLOBAL.gain_life()
 		set_collision_layer_value(4,false)
 		set_collision_mask_value(1,false)
-		await get_node("Cherry-anim").animation_finished
-		self.queue_free()
-		
+
+func _on_sound_gain_life_finished():
+	self.queue_free()
+
+func _on_cherryanim_animation_finished(anim_name):
+	self.visible = false

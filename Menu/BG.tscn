@@ -25,7 +25,7 @@ texture = ExtResource("1_dil8n")
 [node name="mountains" type="ParallaxLayer" parent="."]
 position = Vector2(-70, -3)
 motion_scale = Vector2(0.6, 0.6)
-motion_mirroring = Vector2(1144.68, 0)
+motion_mirroring = Vector2(1153.45, 0)
 
 [node name="Middle" type="Sprite2D" parent="mountains"]
 position = Vector2(155, 514)
@@ -72,6 +72,12 @@ texture = ExtResource("3_ock30")
 motion_scale = Vector2(0.8, 0)
 motion_mirroring = Vector2(1150, 0)
 
+[node name="Palm" type="Sprite2D" parent="close-bg"]
+modulate = Color(0.792157, 0.792157, 0.792157, 1)
+position = Vector2(54, 449)
+scale = Vector2(2.14557, 2.14557)
+texture = ExtResource("5_nilr7")
+
 [node name="Plant-house" type="Sprite2D" parent="close-bg"]
 modulate = Color(0.870588, 0.870588, 0.870588, 1)
 position = Vector2(839, 523)
@@ -89,12 +95,6 @@ flip_h = true
 modulate = Color(0.780392, 0.780392, 0.780392, 1)
 position = Vector2(875, 486)
 scale = Vector2(1.79114, 1.79114)
-texture = ExtResource("5_nilr7")
-
-[node name="Palm" type="Sprite2D" parent="close-bg"]
-modulate = Color(0.792157, 0.792157, 0.792157, 1)
-position = Vector2(39, 453)
-scale = Vector2(2.14557, 2.14557)
 texture = ExtResource("5_nilr7")
 
 [node name="Palm2" type="Sprite2D" parent="close-bg"]

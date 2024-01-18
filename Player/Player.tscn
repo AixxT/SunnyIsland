@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bofid8gm1drjx"]
+[gd_scene load_steps=30 format=3 uid="uid://bofid8gm1drjx"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_8250m"]
 [ext_resource type="Texture2D" uid="uid://bd0p6rer6svhu" path="res://Sunny-land-files/Graphical Assets/spritesheets/player.png" id="2_tverl"]
@@ -14,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://dhju8yilyabxh" path="res://Sunny-land-files/Graphical Assets/sprites/player/run/player-run-4.png" id="12_bl7fr"]
 [ext_resource type="Texture2D" uid="uid://1eu0rjbxo3hg" path="res://Sunny-land-files/Graphical Assets/sprites/player/run/player-run-5.png" id="13_bslu8"]
 [ext_resource type="Texture2D" uid="uid://buw4h1udgej3k" path="res://Sunny-land-files/Graphical Assets/sprites/player/run/player-run-6.png" id="14_v1y7w"]
+[ext_resource type="AudioStream" uid="uid://fbxqrf62d3yu" path="res://Audio/Sound/jump1.ogg" id="15_nu2wd"]
+[ext_resource type="AudioStream" uid="uid://c7hgmx1oedngj" path="res://Audio/Sound/hurt.ogg" id="16_epr37"]
+[ext_resource type="AudioStream" uid="uid://moc1dm7cva2v" path="res://Audio/Sound/death.ogg" id="17_88cod"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v65mg"]
 radius = 6.0
@@ -309,6 +312,7 @@ shape = SubResource("CapsuleShape2D_v65mg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3ll0v")
 animation = &"jump"
+frame = 1
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -326,5 +330,19 @@ autoplay = "idle"
 [node name="hurt_timer" type="Timer" parent="."]
 process_callback = 0
 wait_time = 0.5
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Sound_jump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("15_nu2wd")
+volume_db = -35.0
+
+[node name="Sound_hurt" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("16_epr37")
+volume_db = -20.0
+
+[node name="Sound_death" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("17_88cod")
+volume_db = -20.0
 
 [connection signal="timeout" from="hurt_timer" to="." method="_on_hurt_timer_timeout"]

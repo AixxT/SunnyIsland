@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b4yvtc4vb2hkw"]
+[gd_scene load_steps=24 format=3 uid="uid://b4yvtc4vb2hkw"]
 
 [ext_resource type="Texture2D" uid="uid://bnwe8y5yidx1o" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-1.png" id="1_64ts7"]
 [ext_resource type="Script" path="res://Enemies/Eagle.gd" id="1_ts1qj"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c338pkujpone0" path="res://Sunny-land-files/Graphical Assets/sprites/eagle/eagle-attack-4.png" id="10_xw7jg"]
 [ext_resource type="Texture2D" uid="uid://dp1ekc4fc6mb3" path="res://Sunny-land-files/Graphical Assets/sprites/eagle/respawn/respawn1.png" id="12_8pho3"]
 [ext_resource type="Texture2D" uid="uid://dk3ynbdls78o1" path="res://Sunny-land-files/Graphical Assets/sprites/eagle/respawn/respawn2.png" id="13_v3chv"]
+[ext_resource type="AudioStream" uid="uid://sgowbnuh1h3e" path="res://Audio/Sound/kill-enemy.ogg" id="14_spw7y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ikhf0"]
 animations = [{
@@ -189,7 +190,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2pqvc"]
-size = Vector2(22, 3)
+size = Vector2(24, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dmtt"]
 size = Vector2(24, 11)
@@ -243,6 +244,10 @@ wait_time = 6.0
 wait_time = 0.05
 one_shot = true
 autostart = true
+
+[node name="Sound-killed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_spw7y")
+volume_db = -23.0
 
 [connection signal="body_entered" from="top_checker" to="." method="_on_top_checker_body_entered"]
 [connection signal="body_entered" from="side_checker" to="." method="_on_side_checker_body_entered"]

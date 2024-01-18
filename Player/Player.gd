@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 200.0
+const SPEED = 170.0
 const JUMP_VELOCITY = -300.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -22,6 +22,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
 			anim.play("jump")
+			$Sounds/Sound_jump.play()
 		
 		# Para que la altura del salto dependa de cuanto se presiona la barra
 		if Input.is_action_just_released("ui_accept") && velocity.y < 0:
@@ -55,11 +56,13 @@ func bounce():
 func ouch(enemy_direction: float):
 	hurt = true
 	GLOBAL.lose_life()
+	set_collision_layer_value(1,false)
 	
 	if GLOBAL.lives <= 0:
 		self.death()
 	else:
 		$hurt_timer.start()
+		$Sounds/Sound_hurt.play()
 		anim.play("hurt")
 		set_modulate(Color(1,0.3,0.3,0.7))
 		set_collision_mask_value(5,false)
@@ -79,12 +82,15 @@ func _on_hurt_timer_timeout():
 	hurt = false
 	if is_on_floor():
 		set_collision_mask_value(5,true)
+		set_collision_layer_value(1,true)
 		$hurt_timer.stop()
 		velocity.x = 0
 
 func death():
 	get_tree().paused = true
 	
+	velocity.x = 0
+	$Sounds/Sound_death.play()
 	anim.play("death")
 	await get_node("AnimationPlayer").animation_finished
 	emit_signal("game_over")

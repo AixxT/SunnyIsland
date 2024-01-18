@@ -52,6 +52,7 @@ func _on_side_checker_body_entered(body):
 #Trigger death animation
 func _on_top_checker_body_entered(body):
 	if body.name == "Player" && $damage_player.is_stopped():
+		$"Sound-killed".play()
 		velocity.x = 0
 		body.bounce()
 		get_node("AnimationPlayer").play("death")

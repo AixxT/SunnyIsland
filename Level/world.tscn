@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://3fdq47bgkxdo"]
+[gd_scene load_steps=53 format=3 uid="uid://3fdq47bgkxdo"]
 
 [ext_resource type="Texture2D" uid="uid://bbol7ptpmogir" path="res://Sunny-land-files/Graphical Assets/environment/tileset.png" id="1_0w6o2"]
 [ext_resource type="Script" path="res://Level/world.gd" id="1_3yx04"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dnumv2d38cyrw" path="res://Sunny-land-files/Graphical Assets/sprites/player/Hearts/full-heart.png" id="16_6mwdd"]
 [ext_resource type="PackedScene" uid="uid://cb2yg82r21hdj" path="res://Assets/Cherry.tscn" id="16_fvqoe"]
 [ext_resource type="Texture2D" uid="uid://bmvkcq5lkmbjv" path="res://Sunny-land-files/Graphical Assets/sprites/player/Hearts/empty-heart.png" id="18_iu4jv"]
+[ext_resource type="AudioStream" uid="uid://cugd4ob0hq1uy" path="res://Audio/Music/sunnyislandmaster.wav" id="20_u6ew6"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_nwf73"]
 tile_data = PackedInt32Array(0, 196608, 3, 65536, 196608, 3, 131072, 196608, 3, 196608, 196608, 3, 262144, 196608, 3, 1, 196608, 3, 65537, 196608, 3, 131073, 262144, 10, 196609, 327680, 3, 262145, 196608, 1610612741, 2, 196608, 3, 65538, 196608, 3, 131074, 327680, 10, 262146, 589824, 7, 3, 262144, 10, 65539, 262144, 11, 4, 327680, 10)
@@ -1045,34 +1046,6 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_nkk53"]
-resource_name = "fade_out"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("transition/play:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("transition/play:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
 [sub_resource type="Animation" id="Animation_86dbo"]
 resource_name = "fade_in_death"
 length = 0.6
@@ -1099,6 +1072,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_nkk53"]
+resource_name = "fade_out"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("transition/play:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("transition/play:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_6m1t5"]
@@ -1135,6 +1136,42 @@ _data = {
 "fade_in_death": SubResource("Animation_86dbo"),
 "fade_out": SubResource("Animation_nkk53"),
 "fade_out_death": SubResource("Animation_6m1t5")
+}
+
+[sub_resource type="Animation" id="Animation_dgv46"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music_level:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-50.0]
+}
+
+[sub_resource type="Animation" id="Animation_o8vtc"]
+resource_name = "volume_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music_level:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-50.0, -25.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3gwx7"]
+_data = {
+"RESET": SubResource("Animation_dgv46"),
+"volume_in": SubResource("Animation_o8vtc")
 }
 
 [node name="World" type="Node2D"]
@@ -1295,8 +1332,8 @@ position = Vector2(536, 240)
 
 [node name="Cherries" type="Node" parent="Assets"]
 
-[node name="Cherry" parent="Assets" instance=ExtResource("16_fvqoe")]
-position = Vector2(86, 143)
+[node name="Cherry" parent="Assets/Cherries" instance=ExtResource("16_fvqoe")]
+position = Vector2(197, 346)
 
 [node name="Player" type="Node2D" parent="."]
 process_mode = 3
@@ -1400,6 +1437,16 @@ self_modulate = Color(1, 1, 1, 0)
 offset_right = 1156.0
 offset_bottom = 654.0
 color = Color(0.858824, 0.305882, 0.188235, 1)
+
+[node name="Music_level" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_u6ew6")
+volume_db = -50.0
+autoplay = true
+
+[node name="Music-transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3gwx7")
+}
 
 [connection signal="gem_collected" from="Assets/Gems/Gem" to="HUD" method="_on_gem_collected"]
 [connection signal="gem_collected" from="Assets/Gems/Gem2" to="HUD" method="_on_gem_collected"]

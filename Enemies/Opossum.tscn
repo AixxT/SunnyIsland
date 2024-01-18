@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d232aelykr372"]
+[gd_scene load_steps=26 format=3 uid="uid://d232aelykr372"]
 
 [ext_resource type="Script" path="res://Enemies/Opossum.gd" id="1_b5c41"]
 [ext_resource type="Texture2D" uid="uid://bdd8dg6qy00wp" path="res://Sunny-land-files/Graphical Assets/sprites/opossum/opossum-1.png" id="1_lwq6t"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://ron0cdgx6l1r" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-6.png" id="7_5hvbm"]
 [ext_resource type="Texture2D" uid="uid://c3a2bnmm3kh5t" path="res://Sunny-land-files/Graphical Assets/sprites/opossum/respawn/respawn-1.png" id="14_q4kul"]
 [ext_resource type="Texture2D" uid="uid://cndweoq2paq0l" path="res://Sunny-land-files/Graphical Assets/sprites/opossum/respawn/respawn-2.png" id="15_rckhd"]
+[ext_resource type="AudioStream" uid="uid://sgowbnuh1h3e" path="res://Audio/Sound/kill-enemy.ogg" id="16_iwgg4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_km28n"]
 size = Vector2(26, 13)
@@ -251,6 +252,10 @@ wait_time = 3.0
 
 [node name="damage_player" type="Timer" parent="."]
 wait_time = 0.05
+
+[node name="Sound-killed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_iwgg4")
+volume_db = -23.0
 
 [connection signal="body_entered" from="top_checker" to="." method="_on_top_checker_body_entered"]
 [connection signal="body_entered" from="side_checker" to="." method="_on_side_checker_body_entered"]
