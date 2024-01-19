@@ -10,7 +10,7 @@ var player: Node
 var chase: bool = false 
 var fst_jump: int = 0
 var direction: Vector2 #Hacia donde se encuentra el player
-@export var initial_position = Vector2(233, 211)
+@export var initial_position: Vector2
 
 @onready var anim: Node = get_node("Frog-anim")
 
