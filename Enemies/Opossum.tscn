@@ -248,7 +248,7 @@ one_shot = true
 autostart = true
 
 [node name="Respawn" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 50.0
 
 [node name="damage_player" type="Timer" parent="."]
 wait_time = 0.05

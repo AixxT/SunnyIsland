@@ -1,10 +1,15 @@
-[gd_scene load_steps=30 format=3 uid="uid://bofid8gm1drjx"]
+[gd_scene load_steps=40 format=3 uid="uid://bofid8gm1drjx"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_8250m"]
 [ext_resource type="Texture2D" uid="uid://bd0p6rer6svhu" path="res://Sunny-land-files/Graphical Assets/spritesheets/player.png" id="2_tverl"]
+[ext_resource type="Texture2D" uid="uid://7jq1uf8gahow" path="res://Sunny-land-files/Graphical Assets/sprites/player/climb/player-climb-1.png" id="2_ue1ox"]
 [ext_resource type="Texture2D" uid="uid://dqx7rtx1ssb02" path="res://Sunny-land-files/Graphical Assets/sprites/player/idle/player-idle-1.png" id="3_18dgj"]
+[ext_resource type="Texture2D" uid="uid://lqxryxboonpb" path="res://Sunny-land-files/Graphical Assets/sprites/player/climb/player-climb-2.png" id="3_qpxkj"]
 [ext_resource type="Texture2D" uid="uid://wcrmmbafvuwj" path="res://Sunny-land-files/Graphical Assets/sprites/player/idle/player-idle-2.png" id="4_7uqvh"]
+[ext_resource type="Texture2D" uid="uid://b1pnfqrohs1jb" path="res://Sunny-land-files/Graphical Assets/sprites/player/climb/player-climb-3.png" id="4_anen0"]
 [ext_resource type="Texture2D" uid="uid://dd2j2nd4q0psa" path="res://Sunny-land-files/Graphical Assets/sprites/player/idle/player-idle-3.png" id="5_e32pi"]
+[ext_resource type="Texture2D" uid="uid://c51tpgtqjy32w" path="res://Sunny-land-files/Graphical Assets/sprites/player/crouch/player-crouch-1.png" id="5_wa4ha"]
+[ext_resource type="Texture2D" uid="uid://dsol8wbvraq8e" path="res://Sunny-land-files/Graphical Assets/sprites/player/crouch/player-crouch-2.png" id="6_elrt1"]
 [ext_resource type="Texture2D" uid="uid://c5l4b66kdlmhb" path="res://Sunny-land-files/Graphical Assets/sprites/player/idle/player-idle-4.png" id="6_lbed8"]
 [ext_resource type="Texture2D" uid="uid://bl2e6ix18vomu" path="res://Sunny-land-files/Graphical Assets/sprites/player/jump/player-jump-1.png" id="7_j16bv"]
 [ext_resource type="Texture2D" uid="uid://c7ntsdyee73sx" path="res://Sunny-land-files/Graphical Assets/sprites/player/jump/player-jump-2.png" id="8_3ysl1"]
@@ -17,10 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://fbxqrf62d3yu" path="res://Audio/Sound/jump1.ogg" id="15_nu2wd"]
 [ext_resource type="AudioStream" uid="uid://c7hgmx1oedngj" path="res://Audio/Sound/hurt.ogg" id="16_epr37"]
 [ext_resource type="AudioStream" uid="uid://moc1dm7cva2v" path="res://Audio/Sound/death.ogg" id="17_88cod"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v65mg"]
-radius = 6.0
-height = 18.0
+[ext_resource type="Shape2D" uid="uid://b2u7kjjdraeu7" path="res://Player/standing-cshape.tres" id="20_0sjtr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sfl6a"]
 atlas = ExtResource("2_tverl")
@@ -32,6 +34,36 @@ region = Rect2(33, 128, 33, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3ll0v"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qpxkj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_anen0")
+}],
+"loop": true,
+"name": &"climb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ue1ox")
+}],
+"loop": true,
+"name": &"climb-idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wa4ha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_elrt1")
+}],
+"loop": true,
+"name": &"crouch-walk",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sfl6a")
@@ -107,7 +139,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -119,7 +151,65 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"jump"]
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_7cq74"]
+resource_name = "climb"
+length = 0.6
+loop_mode = 1
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"climb"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_nd7fn"]
+resource_name = "climb-idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"climb-idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_6pcym"]
@@ -290,9 +380,71 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_64fhm"]
+resource_name = "crouch"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"crouch-walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_s42q7"]
+resource_name = "crouch-walk"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"crouch-walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ig07"]
 _data = {
 "RESET": SubResource("Animation_a0luu"),
+"climb": SubResource("Animation_7cq74"),
+"climb-idle": SubResource("Animation_nd7fn"),
+"crouch": SubResource("Animation_64fhm"),
+"crouch-walk": SubResource("Animation_s42q7"),
 "death": SubResource("Animation_6pcym"),
 "fall": SubResource("Animation_n06tu"),
 "hurt": SubResource("Animation_5xj2h"),
@@ -301,25 +453,27 @@ _data = {
 "run": SubResource("Animation_6bjnw")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2w5e"]
+size = Vector2(8, 20)
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 58
 script = ExtResource("1_8250m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
-shape = SubResource("CapsuleShape2D_v65mg")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3ll0v")
-animation = &"jump"
-frame = 1
-metadata/_edit_lock_ = true
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = ExtResource("20_0sjtr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.705, 2.705)
 limit_left = 0
 limit_top = 0
-limit_right = 672
+limit_right = 1100
+limit_bottom = 760
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -345,4 +499,13 @@ volume_db = -20.0
 stream = ExtResource("17_88cod")
 volume_db = -20.0
 
+[node name="Ladder_checker" type="Area2D" parent="."]
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder_checker"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_m2w5e")
+
 [connection signal="timeout" from="hurt_timer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="body_entered" from="Ladder_checker" to="." method="_on_ladder_checker_body_entered"]
+[connection signal="body_exited" from="Ladder_checker" to="." method="_on_ladder_checker_body_exited"]
