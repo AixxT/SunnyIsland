@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqokifrbgqjug"]
+
+[ext_resource type="Script" path="res://crank.gd" id="1_kmq4r"]
+[ext_resource type="Texture2D" uid="uid://dw2hq3beu64jn" path="res://Sunny-land-files/Graphical Assets/environment/Props/crank-down.png" id="2_lrgfl"]
+[ext_resource type="Texture2D" uid="uid://bb5wtgaw2veid" path="res://Sunny-land-files/Graphical Assets/environment/Props/crank-up.png" id="3_nhb2j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iqy0x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lrgfl")
+}],
+"loop": true,
+"name": &"activated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nhb2j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h6cu5"]
+radius = 5.0
+
+[node name="crank" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_kmq4r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -3)
+sprite_frames = SubResource("SpriteFrames_iqy0x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h6cu5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

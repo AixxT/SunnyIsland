@@ -39,11 +39,15 @@ func _physics_process(delta):
 					state = States.FLOOR
 				elif should_climb_ladder():
 					state = States.LADDER
-			
+			else:
+				if is_on_floor():
+					state = States.FLOOR
+					
 			move_and_slide()
 		
 		States.FLOOR:
 			velocity.y += gravity * delta
+			
 			if not is_on_floor():
 				state = States.AIR
 			elif should_climb_ladder():
@@ -55,15 +59,15 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("jump"):
 				jump()
 			
-			#Handle movement
-			if side_direction():
-				velocity.x = side_direction() * SPEED
-				anim.play("run")
-			else:
-				velocity.x = move_toward(velocity.x, 0, SPEED)
-				anim.play("idle")
-			
-			move_and_slide()
+			if not hurt:
+				move_and_slide()
+				#Handle movement
+				if side_direction():
+					velocity.x = side_direction() * SPEED
+					anim.play("run")
+				else:
+					velocity.x = move_toward(velocity.x, 0, SPEED)
+					anim.play("idle")
 		
 		States.LADDER:
 			if Input.is_action_just_pressed("jump"):
@@ -179,9 +183,9 @@ func ouch(enemy_direction: float):
 		elif enemy_direction < 0:
 			velocity.x = -100
 		
-		Input.action_release("ui_left") 
-		Input.action_release("ui_right")
-		Input.action_release("ui_up")
+		Input.action_release("left") 
+		Input.action_release("right")
+		Input.action_release("up")
 
 func _on_hurt_timer_timeout():
 	set_modulate(Color(1,1,1,1))
@@ -215,3 +219,26 @@ func _on_areacrouchonly_body_entered(body):
 
 func _on_areacrouchonly_body_exited(body):
 	in_crouching_area = false
+
+func danger_zone():
+	hurt = true
+	GLOBAL.lose_life()
+	set_collision_layer_value(1,false)
+	
+	if GLOBAL.lives <= 0:
+		self.death()
+	else:
+		bounce()
+		$hurt_timer.start()
+		$Sounds/Sound_hurt.play()
+		$AnimationPlayer.play("danger-zone")
+		set_modulate(Color(1,0.3,0.3,0.7))
+		self.set_position(Vector2(547,628))
+		set_collision_mask_value(5,false)
+		
+		Input.action_release("left") 
+		Input.action_release("right")
+		Input.action_release("up")
+
+func _on_dangerzones_body_entered(body):
+	danger_zone()

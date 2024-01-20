@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bofid8gm1drjx"]
+[gd_scene load_steps=41 format=3 uid="uid://bofid8gm1drjx"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_8250m"]
 [ext_resource type="Texture2D" uid="uid://bd0p6rer6svhu" path="res://Sunny-land-files/Graphical Assets/spritesheets/player.png" id="2_tverl"]
@@ -438,6 +438,45 @@ tracks/1/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_ktila"]
+resource_name = "danger_zone"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.309804), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ig07"]
 _data = {
 "RESET": SubResource("Animation_a0luu"),
@@ -445,6 +484,7 @@ _data = {
 "climb-idle": SubResource("Animation_nd7fn"),
 "crouch": SubResource("Animation_64fhm"),
 "crouch-walk": SubResource("Animation_s42q7"),
+"danger_zone": SubResource("Animation_ktila"),
 "death": SubResource("Animation_6pcym"),
 "fall": SubResource("Animation_n06tu"),
 "hurt": SubResource("Animation_5xj2h"),
@@ -483,7 +523,7 @@ autoplay = "idle"
 
 [node name="hurt_timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 0.5
+wait_time = 0.4
 
 [node name="Sounds" type="Node" parent="."]
 

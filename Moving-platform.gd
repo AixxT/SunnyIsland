@@ -9,13 +9,18 @@ extends Path2D
 
 var activated:bool = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	if not loop:
-		$AnimationPlayer.play("move")
-		$AnimationPlayer.speed_scale = speed_scale
 		set_process(false) #si el path es open no hay necesidad de que se ejecute _process(delta)
+		if activated:
+			$AnimationPlayer.play("move")
+			$AnimationPlayer.speed_scale = speed_scale
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
 	$PathFollow2D.progress += speed
+
+
+func _on_crank_activated():
+	activated = true
+	_ready()

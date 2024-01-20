@@ -188,6 +188,7 @@ libraries = {
 
 [node name="play" type="ColorRect" parent="transition"]
 visible = false
+self_modulate = Color(1, 1, 1, 0)
 offset_right = 1156.0
 offset_bottom = 654.0
 color = Color(0.196078, 0.172549, 0.262745, 1)

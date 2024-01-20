@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://6e5qoheyqepw"]
+
+[ext_resource type="Texture2D" uid="uid://b0fkvg8ht7aen" path="res://Sunny-land-files/Graphical Assets/sprites/key/key.png" id="1_8rjvm"]
+[ext_resource type="Script" path="res://Assets/Key.gd" id="1_t0plx"]
+[ext_resource type="AudioStream" uid="uid://c5sdnjp2q4tnu" path="res://Audio/Sound/win.ogg" id="3_vw0xx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_esptq"]
+radius = 6.0
+height = 24.0
+
+[node name="Key" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_t0plx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.675, 0.675)
+texture = ExtResource("1_8rjvm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_esptq")
+
+[node name="Sound-win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vw0xx")
+volume_db = -15.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="Sound-win" to="." method="_on_soundwin_finished"]
