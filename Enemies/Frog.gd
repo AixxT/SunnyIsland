@@ -78,7 +78,7 @@ func _on_fst_jump_timeout():
 	
 #Death
 func _on_top_checker_body_entered(body):
-	if body.name == "Player":
+	if body.name == "Player" and not body.hurt:
 		$"Sound-killed".play()
 		chase = false
 		$Chase.stop()

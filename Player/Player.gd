@@ -165,29 +165,30 @@ func bounce():
 	state = States.AIR
 
 func ouch(enemy_direction: float):
-	hurt = true
-	state = States.AIR
-	GLOBAL.lose_life()
-	set_collision_layer_value(1,false)
-	
-	if GLOBAL.lives <= 0:
-		self.death()
-	else:
-		$hurt_timer.start()
-		$Sounds/Sound_hurt.play()
-		anim.play("hurt")
-		set_modulate(Color(1,0.3,0.3,0.7))
-		set_collision_mask_value(5,false)
-		velocity.y = JUMP_VELOCITY * 0.6
+	if not hurt:
+		hurt = true
+		GLOBAL.lose_life()
+		set_collision_layer_value(1,false)
 		
-		if enemy_direction > 0:
-			velocity.x = 100
-		elif enemy_direction < 0:
-			velocity.x = -100
-		
-		Input.action_release("left") 
-		Input.action_release("right")
-		Input.action_release("up")
+		if GLOBAL.lives <= 0:
+			self.death()
+		else:
+			$hurt_timer.start()
+			$Sounds/Sound_hurt.play()
+			anim.play("hurt")
+			set_modulate(Color(1,0.3,0.3,0.7))
+			set_collision_mask_value(5,false)
+			velocity.y = JUMP_VELOCITY * 0.6
+			state = States.AIR
+			
+			if enemy_direction > 0:
+				velocity.x = 100
+			elif enemy_direction < 0:
+				velocity.x = -100
+			
+			Input.action_release("left") 
+			Input.action_release("right")
+			Input.action_release("up")
 
 func _on_hurt_timer_timeout():
 	set_modulate(Color(1,1,1,1))
