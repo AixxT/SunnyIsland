@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjxeip6o1dlk8"]
+[gd_scene load_steps=8 format=3 uid="uid://bjxeip6o1dlk8"]
 
 [ext_resource type="Script" path="res://Door.gd" id="1_jyyvi"]
 [ext_resource type="Texture2D" uid="uid://cpco0xnj0rk80" path="res://Sunny-land-files/Graphical Assets/environment/Props/door.png" id="2_dfgbs"]
 [ext_resource type="Texture2D" uid="uid://db4hihxkt1t7o" path="res://Sunny-land-files/Graphical Assets/environment/Props/door-opened.png" id="3_jchax"]
+[ext_resource type="AudioStream" uid="uid://c4foe112ld1xw" path="res://Audio/Sound/abrir.ogg" id="4_nu5ob"]
+[ext_resource type="AudioStream" uid="uid://dswtx5141o5fy" path="res://Audio/Sound/cerrar.ogg" id="5_1pe2m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_glgid"]
 animations = [{
@@ -36,6 +38,14 @@ animation = &"closed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nko4c")
+
+[node name="Sound-open" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_nu5ob")
+volume_db = -10.0
+
+[node name="Sound-closed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_1pe2m")
+volume_db = -10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

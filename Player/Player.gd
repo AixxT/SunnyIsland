@@ -108,6 +108,8 @@ func _physics_process(delta):
 				stand()
 				jump()
 				state = States.AIR
+			if is_on_floor() and Input.is_action_pressed("down") and should_climb_ladder():
+				state = States.LADDER
 			elif not is_on_floor() and not in_crouching_area:
 				stand()
 				state = States.AIR

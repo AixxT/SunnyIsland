@@ -23,53 +23,53 @@ scale = Vector2(3, 3.3625)
 texture = ExtResource("1_dil8n")
 
 [node name="mountains" type="ParallaxLayer" parent="."]
-position = Vector2(-70, -3)
 motion_scale = Vector2(0.6, 0.6)
-motion_mirroring = Vector2(1153.45, 0)
+motion_mirroring = Vector2(1157, 0)
 
 [node name="Middle" type="Sprite2D" parent="mountains"]
-position = Vector2(155, 514)
+position = Vector2(87.5, 534)
+scale = Vector2(0.994318, 1)
 texture = ExtResource("3_ock30")
 
 [node name="Middle7" type="Sprite2D" parent="mountains"]
-position = Vector2(1062, 560)
+position = Vector2(994, 580)
 texture = ExtResource("3_ock30")
 
 [node name="Middle2" type="Sprite2D" parent="mountains"]
-position = Vector2(278, 575)
+position = Vector2(210, 595)
 scale = Vector2(1.26136, 1.03261)
 texture = ExtResource("3_ock30")
 flip_h = true
 
 [node name="Middle4" type="Sprite2D" parent="mountains"]
-position = Vector2(737, 532)
+position = Vector2(669, 552)
 scale = Vector2(1.27273, 1.06522)
 texture = ExtResource("3_ock30")
 flip_h = true
 
 [node name="Middle8" type="Sprite2D" parent="mountains"]
-position = Vector2(1129.5, 520)
-scale = Vector2(1.03977, 1.06522)
+position = Vector2(1063.5, 540)
+scale = Vector2(1.0625, 1.06522)
 texture = ExtResource("3_ock30")
 flip_h = true
 
 [node name="Middle5" type="Sprite2D" parent="mountains"]
-position = Vector2(613, 578)
+position = Vector2(545, 598)
 texture = ExtResource("3_ock30")
 flip_h = true
 
 [node name="Middle3" type="Sprite2D" parent="mountains"]
-position = Vector2(457, 592)
+position = Vector2(389, 612)
 scale = Vector2(1.22159, 1)
 texture = ExtResource("3_ock30")
 
 [node name="Middle6" type="Sprite2D" parent="mountains"]
-position = Vector2(919, 546)
+position = Vector2(851, 566)
 scale = Vector2(1.22159, 1)
 texture = ExtResource("3_ock30")
 
 [node name="close-bg" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.8, 0)
+motion_scale = Vector2(0.8, 0.8)
 motion_mirroring = Vector2(1150, 0)
 
 [node name="Palm" type="Sprite2D" parent="close-bg"]

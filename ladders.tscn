@@ -6,7 +6,7 @@
 size = Vector2(16, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4eoy"]
-size = Vector2(4.20477, 2)
+size = Vector2(8.47726, 2)
 
 [node name="Ladders" type="StaticBody2D"]
 collision_layer = 2
