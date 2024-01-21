@@ -1,0 +1,186 @@
+[gd_scene load_steps=20 format=3 uid="uid://crgysqxj1ft2f"]
+
+[ext_resource type="Script" path="res://Menu/instructions.gd" id="1_ptehg"]
+[ext_resource type="Texture2D" uid="uid://3sxw376suvq7" path="res://Sunny-land-files/Graphical Assets/Menu/Wood sign.png" id="1_sqwuw"]
+[ext_resource type="FontFile" uid="uid://d0aardhbvg5l8" path="res://Sunny-land-files/Fonts/Early GameBoy.ttf" id="2_0htdt"]
+[ext_resource type="FontFile" uid="uid://dirt80bd4rsxu" path="res://Sunny-land-files/Fonts/Retroville NC.ttf" id="3_dhbna"]
+[ext_resource type="Texture2D" uid="uid://c88fbg2m4hrhd" path="res://Sunny-land-files/Graphical Assets/Menu/key-left.png" id="4_250c7"]
+[ext_resource type="Texture2D" uid="uid://d2ismhq1hogpd" path="res://Sunny-land-files/Graphical Assets/Menu/keys.png" id="5_rfo1h"]
+[ext_resource type="Texture2D" uid="uid://d4hshqtsgb54d" path="res://Sunny-land-files/Graphical Assets/Menu/key-space.png" id="6_ytesx"]
+[ext_resource type="Texture2D" uid="uid://b7waeknr0wotp" path="res://Sunny-land-files/Graphical Assets/sprites/frog/idle/frog-idle-1.png" id="7_f7o2j"]
+[ext_resource type="Texture2D" uid="uid://bnwe8y5yidx1o" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-1.png" id="8_biu5l"]
+[ext_resource type="Texture2D" uid="uid://myynqhqwaro3" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-2.png" id="9_di6qm"]
+[ext_resource type="Texture2D" uid="uid://cet33x58xhawt" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-3.png" id="10_daevd"]
+[ext_resource type="Texture2D" uid="uid://cbi3jh7tqj7so" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-4.png" id="11_0uy5b"]
+[ext_resource type="Texture2D" uid="uid://cmgl2u7elxs7n" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-5.png" id="12_tffiu"]
+[ext_resource type="Texture2D" uid="uid://ron0cdgx6l1r" path="res://Sunny-land-files/Graphical Assets/sprites/enemy-death/enemy-death-6.png" id="13_d1hm8"]
+[ext_resource type="Texture2D" uid="uid://cwbxao3hrmx7m" path="res://Sunny-land-files/Graphical Assets/Menu/close-x.png" id="15_4natv"]
+[ext_resource type="Texture2D" uid="uid://btprm0nd1oecy" path="res://Sunny-land-files/Graphical Assets/Menu/close-pressed.png" id="16_4s0rw"]
+[ext_resource type="Texture2D" uid="uid://demmpukph3hnq" path="res://Sunny-land-files/Graphical Assets/Menu/close-hover.png" id="17_xsi6v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qhlw7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vjp0y"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": ExtResource("7_f7o2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_biu5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_di6qm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_daevd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_0uy5b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tffiu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_d1hm8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Instructions" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1160.0
+offset_bottom = 652.0
+script = ExtResource("1_ptehg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 52.0
+offset_right = 1122.0
+offset_bottom = 644.0
+texture = ExtResource("1_sqwuw")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 377.0
+offset_top = 116.0
+offset_right = 826.0
+offset_bottom = 166.0
+theme_override_colors/font_color = Color(0.0823529, 0.0705882, 0.0509804, 1)
+theme_override_fonts/font = ExtResource("2_0htdt")
+theme_override_font_sizes/font_size = 36
+text = "INSTRUCTIONS"
+horizontal_alignment = 1
+
+[node name="story" type="Label" parent="."]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 168.0
+offset_right = 993.0
+offset_bottom = 204.0
+theme_override_colors/font_color = Color(0.0823529, 0.0705882, 0.0509804, 1)
+theme_override_fonts/font = ExtResource("3_dhbna")
+theme_override_font_sizes/font_size = 18
+text = "Sunny lost his house key, help him find it!"
+horizontal_alignment = 1
+
+[node name="keys" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -5.0
+offset_right = 1159.0
+offset_bottom = 660.0
+
+[node name="move" type="Label" parent="keys"]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 291.0
+offset_right = 392.0
+offset_bottom = 328.0
+theme_override_colors/font_color = Color(0.0823529, 0.0705882, 0.0509804, 1)
+theme_override_fonts/font = ExtResource("3_dhbna")
+theme_override_font_sizes/font_size = 30
+text = "MOVE"
+horizontal_alignment = 1
+
+[node name="left" type="TextureRect" parent="keys"]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 280.0
+offset_right = 455.0
+offset_bottom = 344.0
+texture = ExtResource("4_250c7")
+expand_mode = 1
+
+[node name="right" type="TextureRect" parent="keys"]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 280.0
+offset_right = 528.0
+offset_bottom = 344.0
+texture = ExtResource("5_rfo1h")
+expand_mode = 1
+
+[node name="jump" type="Label" parent="keys"]
+layout_mode = 0
+offset_left = 593.0
+offset_top = 288.0
+offset_right = 716.0
+offset_bottom = 348.0
+theme_override_colors/font_color = Color(0.0823529, 0.0705882, 0.0509804, 1)
+theme_override_fonts/font = ExtResource("3_dhbna")
+theme_override_font_sizes/font_size = 30
+text = "JUMP"
+horizontal_alignment = 1
+
+[node name="space" type="TextureRect" parent="keys"]
+layout_mode = 0
+offset_left = 721.0
+offset_top = 276.0
+offset_right = 920.0
+offset_bottom = 340.0
+texture = ExtResource("6_ytesx")
+expand_mode = 1
+
+[node name="enemies" type="Label" parent="keys"]
+layout_mode = 0
+offset_left = 313.0
+offset_top = 408.0
+offset_right = 739.0
+offset_bottom = 496.0
+theme_override_colors/font_color = Color(0.0823529, 0.0705882, 0.0509804, 1)
+theme_override_fonts/font = ExtResource("3_dhbna")
+theme_override_font_sizes/font_size = 30
+text = "JUMP ON ENEMIES TO 
+KILL THEM!"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 748.0
+offset_top = 400.0
+offset_right = 876.0
+offset_bottom = 500.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qhlw7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel"]
+position = Vector2(68, 48)
+scale = Vector2(3.11875, 3.11875)
+sprite_frames = SubResource("SpriteFrames_vjp0y")
+frame_progress = 0.064822
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 952.0
+offset_top = 72.0
+offset_right = 1052.0
+offset_bottom = 172.0
+texture_normal = ExtResource("15_4natv")
+texture_pressed = ExtResource("16_4s0rw")
+texture_hover = ExtResource("17_xsi6v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

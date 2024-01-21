@@ -2343,7 +2343,6 @@ libraries = {
 }
 
 [node name="play" type="ColorRect" parent="transition"]
-visible = false
 offset_right = 1156.0
 offset_bottom = 654.0
 color = Color(0.196078, 0.172549, 0.262745, 1)
